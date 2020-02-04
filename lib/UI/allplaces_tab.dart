@@ -1,4 +1,5 @@
 import 'package:aqi_monitor/UI/location_screen.dart';
+import 'package:aqi_monitor/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -23,32 +24,41 @@ class AllPlacesTab extends StatelessWidget {
       reverse: false,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          color: Colors.blue[500],
+          color: Theme.of(context).primaryColor,
           child: ListTile(
-            leading: GestureDetector(
-              onTap: () {},
-              child: Container(
-                width: 48,
-                height: 48,
-                padding: EdgeInsets.symmetric(vertical: 4.0),
-                alignment: Alignment.center,
-                child: CircleAvatar(
-                  child: Icon(Icons.person),
-                  backgroundColor: Colors.white,
+            contentPadding: EdgeInsets.only(
+                left: 12.0, right: 12.0, top: 8.0, bottom: 12.0),
+            leading: Container(
+              width: 48,
+              height: 48,
+              padding: EdgeInsets.symmetric(vertical: 4.0),
+              alignment: Alignment.center,
+              child: CircleAvatar(
+                child: Center(
+                  child: Text(
+                    "${index + 1}",
+                    style: TextStyle(
+                      fontFamily: Utils.ubuntuRegularFont,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
+                backgroundColor: Colors.blue,
               ),
             ),
-            trailing: Icon(
-              Icons.more_vert,
-              color: Colors.white,
+            trailing: IconButton(
+              icon: Icon(
+                Icons.star_border,
+                color: Theme.of(context).accentColor,
+              ),
+              onPressed: () {},
             ),
             title: Text(
-              "Person ${index + 1}",
-              style: TextStyle(color: Colors.white),
-            ),
-            subtitle: Text(
               "${cities[index]}",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                  color: Theme.of(context).accentColor,
+                  fontFamily: Utils.ubuntuRegularFont),
             ),
             onTap: () => Navigator.push(
                 context,
@@ -59,7 +69,7 @@ class AllPlacesTab extends StatelessWidget {
         );
       },
       separatorBuilder: (BuildContext context, int index) => Divider(
-        thickness: 2,
+        thickness: 0,
       ),
     );
   }

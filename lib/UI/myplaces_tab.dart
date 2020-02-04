@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 class MyPlacesTab extends StatefulWidget {
@@ -11,7 +9,9 @@ class _MyPlacesTabState extends State<MyPlacesTab> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
+      child: Center(
+        child: Text("Your saved places"),
+      ),
     );
   }
 }

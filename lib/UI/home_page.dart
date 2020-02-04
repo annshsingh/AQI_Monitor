@@ -1,7 +1,7 @@
 import 'package:aqi_monitor/UI/allplaces_tab.dart';
 import 'package:aqi_monitor/UI/myplaces_tab.dart';
 import 'package:aqi_monitor/Utils/settings.dart';
-import 'package:aqi_monitor/Utils/string_utils.dart';
+import 'package:aqi_monitor/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -32,12 +32,12 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Row(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsets.only(right: 12.0),
                 child: SvgPicture.asset(
-                  StringUtils.lungs_img,
-                  width: 32.0,
-                  height: 32.0,
-                  color: Theme.of(context).accentColor,
+                  Utils.lungs_img,
+                  width: 28.0,
+                  height: 28.0,
+                  color: Colors.blue,
                   semanticsLabel: "Lungs Image",
                 ),
               ),
@@ -46,7 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
-                    fontFamily: StringUtils.ubuntuRegularFont),
+                    fontFamily: Utils.ubuntuRegularFont,
+                color: Colors.blue),
               ),
             ],
           ),
@@ -67,7 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
           //Specify the tabs for your view
           bottom: TabBar(
             tabs: myTabs,
-            indicatorColor: Theme.of(context).accentColor,
+            labelColor: Colors.blue,
+            unselectedLabelColor: Colors.blue[200],
+            indicatorColor: Colors.blue,
           ),
         ),
         //Provide each tab with its own content

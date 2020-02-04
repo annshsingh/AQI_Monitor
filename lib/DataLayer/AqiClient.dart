@@ -24,9 +24,7 @@ class AqiClient {
       'limit': "10"
     });
 
-    print("Data - $data");
     final locations = data['results'];
-    print("Locations - $locations");
     return locations
         .map<Location>((json) => Location.fromJson(json))
         .toList(growable: false);
@@ -35,9 +33,7 @@ class AqiClient {
   Future<Map> request(
       {@required String path, Map<String, String> parameters}) async {
     final uri = Uri.https(_host, '$path', parameters);
-    print("URI - ${uri}");
     final results = await http.get(uri, headers: _headers);
-    print("BODY - ${results.body}");
     final jsonObject = json.decode(results.body);
     return jsonObject;
   }

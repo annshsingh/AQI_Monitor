@@ -1,5 +1,4 @@
 import 'package:aqi_monitor/Utils/settings.dart';
-import 'package:aqi_monitor/Utils/string_utils.dart';
 import 'package:aqi_monitor/Utils/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
