@@ -18,6 +18,8 @@ BLoC - An approch to reactive programming
 <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/1.png" alt="Screen1" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/2.png" alt="Screen2" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/5.png" alt="Screen3" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/6.png" alt="Screen4" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/3.png" alt="Screen4" width="153px" height="280px"> 
 ### Dark Theme
 <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/7.png" alt="Screen5" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/8.png" alt="Screen5" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/4.png" alt="Screen5" width="153px" height="280px">
+### iOS 
+<img src="https://github.com/annshsingh/AQI_Monitor/blob/master/9.PNG" alt="Screen5" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/10.PNG" alt="Screen5" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/11.PNG" alt="Screen5" width="153px" height="280px">
 
 ## Dependencies
 
