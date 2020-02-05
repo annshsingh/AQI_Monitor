@@ -1,9 +1,19 @@
+import 'package:aqi_monitor/BLoC/bloc_provider.dart';
+import 'package:aqi_monitor/BLoC/myplaces_bloc.dart';
 import 'package:aqi_monitor/UI/location_screen.dart';
 import 'package:aqi_monitor/Utils/utils.dart';
+import 'package:aqi_monitor/database/place.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hive/hive.dart';
 
-class AllPlacesTab extends StatelessWidget {
+class AllPlacesTab extends StatefulWidget {
+  @override
+  _AllPlacesTabState createState() => _AllPlacesTabState();
+}
+
+class _AllPlacesTabState extends State<AllPlacesTab> {
+  ///List of all the predefined images
   final List<String> cities = <String>[
     'Bengaluru',
     'Chandigarh',
@@ -16,8 +26,21 @@ class AllPlacesTab extends StatelessWidget {
     'Pune',
   ];
 
+  Box<Place> placeBox;
+
+  @override
+  void initState() {
+    super.initState();
+
+    ///get the hive box you want to use (read/write values to)
+    placeBox = Hive.box("place_box");
+  }
+
   @override
   Widget build(BuildContext context) {
+    ///Get the PlacesBloc here which is defined at the root (Wrapping MaterialApp)
+    final myPlacesBloc = BlocProvider.of<MyPlacesBloc>(context);
+
     return ListView.separated(
       padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 8),
       itemCount: cities.length,
@@ -48,11 +71,11 @@ class AllPlacesTab extends StatelessWidget {
               ),
             ),
             trailing: IconButton(
-              icon: Icon(
-                Icons.star_border,
-                color: Theme.of(context).accentColor,
-              ),
-              onPressed: () {},
+              icon: _buildFavoriteButton(myPlacesBloc, cities[index]),
+              onPressed: () {
+                ///Check whether to add place to PlacesBox
+                myPlacesBloc.togglePlace(cities[index]);
+              },
             ),
             title: Text(
               "${cities[index]}",
@@ -71,6 +94,20 @@ class AllPlacesTab extends StatelessWidget {
       separatorBuilder: (BuildContext context, int index) => Divider(
         thickness: 0,
       ),
+    );
+  }
+
+  ///This method is used to toggle Star icon depending on the fact that
+  ///the PlacesBox has the city or not
+  Widget _buildFavoriteButton(MyPlacesBloc bloc, String cityName) {
+    return StreamBuilder<List<Place>>(
+      stream: bloc.myPlacesStream,
+      initialData: <Place>[],
+      builder: (context, snapshot) {
+        bool isMyPlace = bloc.containsPlace(cityName);
+        return Icon(isMyPlace ? Icons.star : Icons.star_border,
+            color: Theme.of(context).accentColor);
+      },
     );
   }
 }

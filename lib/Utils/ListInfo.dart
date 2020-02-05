@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+///Class used to add custom properties to the list of locations for a city
 class ListInfo {
   const ListInfo(this.color, this.aqi, this.assetName, this.message);
 

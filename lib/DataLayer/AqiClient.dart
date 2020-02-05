@@ -16,6 +16,7 @@ class AqiClient {
 
   Map<String, String> get _headers => {'Accept': 'application/json'};
 
+  ///Define the path and parameters for the API call here
   Future<List<Location>> fetchLocations(String city) async {
     final data = await request(path: 'v1/measurements', parameters: {
       'city': city,

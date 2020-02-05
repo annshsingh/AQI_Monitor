@@ -1,9 +1,9 @@
 /// Data class for the locations inside a City
 /// Here:
-///  location: Name of the location
-///  value: PM 2.5 value for the location
-///  unit: Unit of the value
-///  coordinates: Lat/Lng values for the location
+///  [location] : Name of the location
+///  [value] : PM 2.5 value for the location
+///  [unit] : Unit of the value
+///  [coordinates] : Lat/Lng values for the location
 
 class Location {
   final String location;

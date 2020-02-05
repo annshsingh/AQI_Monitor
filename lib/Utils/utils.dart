@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'ListInfo.dart';
 
+///Class to collect all kinds of added utility methods at a single place
 class Utils {
   //Routes
   static const String locationRoute = "/LocationScreen";
@@ -19,8 +20,7 @@ class Utils {
   static const String purple_img = "$imageDir/purple.svg";
   static const String maroon_img = "$imageDir/maroon.svg";
 
-  //Get AQI
-
+  //Get AQI along with AQI specific properties
   static ListInfo getListInfo(dynamic pm25) {
     if (pm25 <= 30) {
       return ListInfo(

@@ -4,6 +4,7 @@ import 'package:aqi_monitor/Utils/settings.dart';
 import 'package:aqi_monitor/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                     fontFamily: Utils.ubuntuRegularFont,
-                color: Colors.blue),
+                    color: Colors.blue),
               ),
             ],
           ),
@@ -65,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
           ],
-          //Specify the tabs for your view
+          ///Specify the tabs for your view
           bottom: TabBar(
             tabs: myTabs,
             labelColor: Colors.blue,
@@ -73,13 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
             indicatorColor: Colors.blue,
           ),
         ),
-        //Provide each tab with its own content
-        body: TabBarView(
-          children: [
-            MyPlacesTab(),
-            AllPlacesTab()
-          ]
-        ),
+        ///Provide each tab with its own content
+        body: TabBarView(children: [MyPlacesTab(), AllPlacesTab()]),
       ),
     );
   }
@@ -88,5 +84,15 @@ class _MyHomePageState extends State<MyHomePage> {
     ///Call setDarkMode method inside our Settings ChangeNotifier class to
     ///Notify all the listeners of the change.
     Provider.of<Settings>(context, listen: false).setDarkMode(set);
+  }
+
+  @override
+  void dispose() {
+    /// Close all the open Hive boxes
+    /// It may benefit the start time of your app if you induce compaction
+    /// manually before you close a box.
+    Hive.box("place_box").compact();
+    Hive.close();
+    super.dispose();
   }
 }
