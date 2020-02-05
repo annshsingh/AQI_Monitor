@@ -4,7 +4,8 @@ A new Flutter application to keep track of AQI levels of a city.
 
 ## Brief explaination of the app
 In this application the user can check AQI levels for a city (predefined list). 
-Features:
+</br> 
+### Features:
 1. There is an option to save a city to "My Places" tab.
 2. Option to change Theme of the app.
 3. AQI level available for locations of 9 cities.
