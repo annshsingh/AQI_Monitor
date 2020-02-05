@@ -55,8 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Provider.of<Settings>(context).isDarkMode
-                  ? Icons.brightness_high
-                  : Icons.brightness_low),
+                  ? Icons.brightness_7
+                  : Icons.brightness_3),
               onPressed: () {
                 changeTheme(
                     Provider.of<Settings>(context, listen: false).isDarkMode

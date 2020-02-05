@@ -71,10 +71,19 @@ class _AllPlacesTabState extends State<AllPlacesTab> {
               ),
             ),
             trailing: IconButton(
-              icon: _buildFavoriteButton(myPlacesBloc, cities[index]),
+              icon: _buildFavoriteButton(myPlacesBloc, cities[index], context),
               onPressed: () {
                 ///Check whether to add place to PlacesBox
                 myPlacesBloc.togglePlace(cities[index]);
+                myPlacesBloc.containsPlace(cities[index])
+                    ? Scaffold.of(context).showSnackBar(
+                        _createSnackBar(Colors.green,
+                            "${cities[index]} added to My Places"),
+                      )
+                    : Scaffold.of(context).showSnackBar(
+                        _createSnackBar(Colors.red,
+                            "${cities[index]} removed from My Places"),
+                      );
               },
             ),
             title: Text(
@@ -99,7 +108,8 @@ class _AllPlacesTabState extends State<AllPlacesTab> {
 
   ///This method is used to toggle Star icon depending on the fact that
   ///the PlacesBox has the city or not
-  Widget _buildFavoriteButton(MyPlacesBloc bloc, String cityName) {
+  Widget _buildFavoriteButton(
+      MyPlacesBloc bloc, String cityName, BuildContext context) {
     return StreamBuilder<List<Place>>(
       stream: bloc.myPlacesStream,
       initialData: <Place>[],
@@ -108,6 +118,18 @@ class _AllPlacesTabState extends State<AllPlacesTab> {
         return Icon(isMyPlace ? Icons.star : Icons.star_border,
             color: Theme.of(context).accentColor);
       },
+    );
+  }
+
+  ///Method to create a SnackBar depending on the fact that the place is
+  ///in the Places Box or not
+  Widget _createSnackBar(Color color, String message) {
+    return SnackBar(
+      elevation: 6.0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: color,
+      content: Text("$message"),
+      duration: Duration(milliseconds: 1000),
     );
   }
 }

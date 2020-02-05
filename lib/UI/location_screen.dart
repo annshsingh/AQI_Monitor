@@ -102,9 +102,9 @@ class _LocationScreenState extends State<LocationScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
         ),
-        color: listInfo.color,
         elevation: 2.0,
         child: Container(
+          color: Colors.transparent,
           width: 300,
           height: 100,
           child: Row(
@@ -112,75 +112,95 @@ class _LocationScreenState extends State<LocationScreen> {
             children: <Widget>[
               Expanded(
                 flex: 1,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    SvgPicture.asset(
-                      listInfo.assetName,
-                      width: 60.0,
-                      height: 60.0,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(6.0),
+                      bottomLeft: Radius.circular(6.0)),
+                  child: Container(
+                    color: listInfo.color,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        SvgPicture.asset(
+                          listInfo.assetName,
+                          width: 60.0,
+                          height: 60.0,
+                        ),
+                        Text(
+                          "${listInfo.message}",
+                          style: TextStyle(
+                              fontFamily: Utils.ubuntuRegularFont,
+                              color: Colors.black38,
+                              fontSize: 12),
+                        )
+                      ],
                     ),
-                    Text(
-                      "${listInfo.message}",
-                      style: TextStyle(
-                          fontFamily: Utils.ubuntuRegularFont,
-                          color: Colors.black38,
-                          fontSize: 12),
-                    )
-                  ],
+                  ),
                 ),
               ),
               Expanded(
                 flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(6.0),
+                      bottomRight: Radius.circular(6.0)),
+                  child: Container(
+                    color: Theme.of(context).primaryColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Icon(Icons.location_on, color: Colors.black38),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 8.0, left: 8.0),
+                              child: Icon(Icons.location_on,
+                                  color: Theme.of(context).accentColor),
+                            ),
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Text(
+                                  "$location",
+                                  style: TextStyle(
+                                    fontFamily: Utils.ubuntuRegularFont,
+                                    color: Theme.of(context).accentColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Text(
-                              "$location",
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 4.0, left: 12.0),
+                              child: Text(
+                                "AQI: ",
+                                style: TextStyle(
+                                    fontFamily: Utils.ubuntuRegularFont,
+                                    color: Theme.of(context).accentColor,
+                                    fontSize: 18.0),
+                              ),
+                            ),
+                            Text(
+                              "${listInfo.aqi}",
                               style: TextStyle(
                                   fontFamily: Utils.ubuntuRegularFont,
-                                  color: Colors.black38),
+                                  color: Theme.of(context).accentColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
-                          child: Text(
-                            "AQI: ",
-                            style: TextStyle(
-                                fontFamily: Utils.ubuntuRegularFont,
-                                color: Colors.black38,
-                                fontSize: 18.0),
-                          ),
-                        ),
-                        Text(
-                          "${listInfo.aqi}",
-                          style: TextStyle(
-                              fontFamily: Utils.ubuntuRegularFont,
-                              color: Colors.black38,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
               )
             ],

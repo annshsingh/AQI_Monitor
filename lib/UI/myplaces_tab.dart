@@ -28,7 +28,7 @@ class _MyPlacesTabState extends State<MyPlacesTab> {
       valueListenable: placeBox.listenable(),
       builder: (context, Box<Place> box, _) {
         return box.values.toList().length == 0
-            ? Center(child: Text("No Saved Places"))
+            ? Center(child: _emptyLayout())
             : ListView.separated(
                 padding:
                     const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 8),
@@ -78,6 +78,53 @@ class _MyPlacesTabState extends State<MyPlacesTab> {
                 ),
               );
       },
+    );
+  }
+
+  ///layout to be shown when there is no data
+  Widget _emptyLayout() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Icon(
+            Icons.move_to_inbox,
+            size: 60.0,
+            color: Colors.grey[400],
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "Click",
+              style: TextStyle(
+                fontFamily: Utils.ubuntuRegularFont,
+                fontSize: 14,
+                color: Colors.grey[400],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                Icons.star_border,
+                size: 24.0,
+                color: Colors.grey[400],
+              ),
+            ),
+            Text(
+              "to add cities here",
+              style: TextStyle(
+                fontFamily: Utils.ubuntuRegularFont,
+                fontSize: 14,
+                color: Colors.grey[400],
+              ),
+            )
+          ],
+        )
+      ],
     );
   }
 }
