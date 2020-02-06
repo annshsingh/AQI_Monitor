@@ -13,6 +13,8 @@ In this application the user can check AQI levels for a city (predefined list).
 ## Architecture Used
 BLoC - An approch to reactive programming
 
+<img src="https://github.com/annshsingh/AQI_Monitor/blob/master/BLoC.png" alt="Screen1" width="650px" height="280px">
+
 ## Screenshots
 ### Light Theme
 <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/1.png" alt="Screen1" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/2.png" alt="Screen2" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/5.png" alt="Screen3" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/6.png" alt="Screen4" width="153px" height="280px"> <img src="https://github.com/annshsingh/AQI_Monitor/blob/master/3.png" alt="Screen4" width="153px" height="280px"> 
