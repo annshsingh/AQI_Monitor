@@ -19,10 +19,25 @@ class LocationScreen extends StatefulWidget {
 class _LocationScreenState extends State<LocationScreen> {
   final bloc = LocationBloc();
 
+  //Scroll controller for the list view
+  ScrollController _controller;
+
+  //Variable to keep track of the page you want to load
+  int page = 0;
+
   @override
   void initState() {
-    bloc.selectedCity(widget.city);
+    bloc.selectedCity(widget.city, 1);
+    _controller = ScrollController()..addListener(_scrollListener);
     super.initState();
+  }
+
+  //Scroll listener for our list view, to keep track of scroll location.
+  void _scrollListener() {
+    if (_controller.position.pixels == _controller.position.maxScrollExtent) {
+      ///fetching list for the next page as we scroll
+      bloc.selectedCity(widget.city, page);
+    }
   }
 
   @override
@@ -50,10 +65,7 @@ class _LocationScreenState extends State<LocationScreen> {
         final results = snapshot.data;
 
         if (results == null) {
-          return Center(
-            child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
-          );
+          return _loader();
         }
 
         if (results.isEmpty) {
@@ -84,12 +96,22 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   Widget _buildSearchResults(List<Location> results) {
+    ///we set page to the result size divided by 10 and add 1 to it
+    ///Example -> After 1st load, our results will be of length 10. Hence
+    ///page = 10/10 + 1 = 2 for the next load.
+    page = results.length ~/ 10 + 1;
     return ListView.builder(
-      itemCount: results.length,
+      // Here results.length + 1 since we want to display loader as well.
+      itemCount: results.length + 1,
+      controller: _controller,
       itemBuilder: (context, index) {
-        final location = results[index];
-        return _locationCard(
-            Utils.getListInfo(location.value), location.location);
+        return index >= results.length
+            ? Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: _loader(),
+              )
+            : _locationCard(Utils.getListInfo(results[index].value),
+                results[index].location);
       },
     );
   }
@@ -208,5 +230,23 @@ class _LocationScreenState extends State<LocationScreen> {
         ),
       ),
     );
+  }
+
+  //Loader widget
+  Widget _loader() {
+    return Center(
+      child: SizedBox(
+        width: 30,
+        height: 30,
+        child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 }
