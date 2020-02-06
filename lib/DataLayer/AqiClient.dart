@@ -18,18 +18,22 @@ class AqiClient {
 
   ///Define the path and parameters for the API call here
   Future<List<Location>> fetchLocations(String city, int page) async {
-    final data = await request(path: 'v1/measurements', parameters: {
-      'city': city,
-      'parameter': 'pm25',
-      'country': 'IN',
-      'page': page.toString(),
-      'limit': "10"
-    });
+    try {
+      final data = await request(path: 'v1/measurements', parameters: {
+        'city': city,
+        'parameter': 'pm25',
+        'country': 'IN',
+        'page': page.toString(),
+        'limit': "10"
+      });
 
-    final locations = data['results'];
-    return locations
-        .map<Location>((json) => Location.fromJson(json))
-        .toList(growable: false);
+      final locations = data['results'];
+      return locations
+          .map<Location>((json) => Location.fromJson(json))
+          .toList(growable: false);
+    }catch(err){
+      return [];
+    }
   }
 
   Future<Map> request(

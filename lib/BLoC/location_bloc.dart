@@ -14,6 +14,7 @@ class LocationBloc implements Bloc {
   ///A private StreamController is declared that will manage the stream and sink for this BLoC
   final _controller = StreamController<List<Location>>();
   final _client = AqiClient();
+  List<Location> results;
 
   ///A public getter to the defined StreamController's stream
   Stream<List<Location>> get locationStream => _controller.stream;
@@ -23,7 +24,11 @@ class LocationBloc implements Bloc {
   ///[page]- The page you want to fetch from the API.
   ///Useful when you want to fetch data in badges.
   void selectedCity(String city, int page) async {
-    final results = await _client.fetchLocations(city, page);
+    try {
+      results = await _client.fetchLocations(city, page);
+    }catch (err){
+      results = [];
+    }
     ///add results to the array
     _locations.addAll(results);
     ///Fetched results added to the sink for the stream

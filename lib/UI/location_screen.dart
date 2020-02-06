@@ -70,26 +70,27 @@ class _LocationScreenState extends State<LocationScreen> {
 
         if (results.isEmpty) {
           return Center(
-              child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.error,
-                  size: 48.0,
-                  color: Colors.red,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.error,
+                    size: 48.0,
+                    color: Colors.red,
+                  ),
                 ),
-              ),
-              Text(
-                'No Results',
-                style: TextStyle(
-                    fontFamily: Utils.ubuntuRegularFont,
-                    color: Theme.of(context).accentColor),
-              ),
-            ],
-          ));
+                Text(
+                  'No Results',
+                  style: TextStyle(
+                      fontFamily: Utils.ubuntuRegularFont,
+                      color: Theme.of(context).accentColor),
+                ),
+              ],
+            ),
+          );
         }
-
         return _buildSearchResults(results);
       },
     );
