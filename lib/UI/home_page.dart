@@ -45,27 +45,19 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(
                 widget.title,
                 style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: Utils.ubuntuRegularFont,
-                    color: Colors.blue),
+                    fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont, color: Colors.blue),
               ),
             ],
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Provider.of<Settings>(context).isDarkMode
-                  ? Icons.brightness_7
-                  : Icons.brightness_3),
+              icon: Icon(Provider.of<Settings>(context).isDarkMode ? Icons.brightness_7 : Icons.brightness_3),
               onPressed: () {
-                changeTheme(
-                    Provider.of<Settings>(context, listen: false).isDarkMode
-                        ? false
-                        : true,
-                    context);
+                changeTheme(Provider.of<Settings>(context, listen: false).isDarkMode ? false : true, context);
               },
             ),
           ],
+
           ///Specify the tabs for your view
           bottom: TabBar(
             tabs: myTabs,
@@ -74,8 +66,14 @@ class _MyHomePageState extends State<MyHomePage> {
             indicatorColor: Colors.blue,
           ),
         ),
+
         ///Provide each tab with its own content
-        body: TabBarView(children: [MyPlacesTab(), AllPlacesTab()]),
+        body: TabBarView(
+          children: [
+            MyPlacesTab(),
+            AllPlacesTab(),
+          ],
+        ),
       ),
     );
   }
