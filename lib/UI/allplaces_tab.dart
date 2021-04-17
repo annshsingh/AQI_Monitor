@@ -49,8 +49,7 @@ class _AllPlacesTabState extends State<AllPlacesTab> {
         return Container(
           color: Theme.of(context).primaryColor,
           child: ListTile(
-            contentPadding: EdgeInsets.only(
-                left: 12.0, right: 12.0, top: 8.0, bottom: 12.0),
+            contentPadding: EdgeInsets.only(left: 12.0, right: 12.0, top: 8.0, bottom: 12.0),
             leading: Container(
               width: 48,
               height: 48,
@@ -76,27 +75,24 @@ class _AllPlacesTabState extends State<AllPlacesTab> {
                 ///Check whether to add place to PlacesBox
                 myPlacesBloc.togglePlace(cities[index]);
                 myPlacesBloc.containsPlace(cities[index])
-                    ? Scaffold.of(context).showSnackBar(
-                        _createSnackBar(Colors.green,
-                            "${cities[index]} added to My Places"),
+                    ? ScaffoldMessenger.of(context).showSnackBar(
+                        _createSnackBar(Colors.green, "${cities[index]} added to My Places"),
                       )
-                    : Scaffold.of(context).showSnackBar(
-                        _createSnackBar(Colors.red,
-                            "${cities[index]} removed from My Places"),
+                    : ScaffoldMessenger.of(context).showSnackBar(
+                        _createSnackBar(Colors.red, "${cities[index]} removed from My Places"),
                       );
               },
             ),
             title: Text(
               "${cities[index]}",
-              style: TextStyle(
-                  color: Theme.of(context).accentColor,
-                  fontFamily: Utils.ubuntuRegularFont),
+              style: TextStyle(color: Theme.of(context).accentColor, fontFamily: Utils.ubuntuRegularFont),
             ),
             onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        LocationScreen(cities[index]))),
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => LocationScreen(cities[index]),
+              ),
+            ),
           ),
         );
       },
@@ -108,15 +104,16 @@ class _AllPlacesTabState extends State<AllPlacesTab> {
 
   ///This method is used to toggle Star icon depending on the fact that
   ///the PlacesBox has the city or not
-  Widget _buildFavoriteButton(
-      MyPlacesBloc bloc, String cityName, BuildContext context) {
+  Widget _buildFavoriteButton(MyPlacesBloc bloc, String cityName, BuildContext context) {
     return StreamBuilder<List<Place>>(
       stream: bloc.myPlacesStream,
       initialData: <Place>[],
       builder: (context, snapshot) {
         bool isMyPlace = bloc.containsPlace(cityName);
-        return Icon(isMyPlace ? Icons.star : Icons.star_border,
-            color: Theme.of(context).accentColor);
+        return Icon(
+          isMyPlace ? Icons.star : Icons.star_border,
+          color: Theme.of(context).accentColor,
+        );
       },
     );
   }

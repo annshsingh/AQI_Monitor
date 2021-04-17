@@ -48,9 +48,7 @@ class _LocationScreenState extends State<LocationScreen> {
         appBar: AppBar(
           title: Text(
             widget.city,
-            style: TextStyle(
-                fontFamily: Utils.ubuntuRegularFont,
-                color: Theme.of(context).accentColor),
+            style: TextStyle(fontFamily: Utils.ubuntuRegularFont, color: Theme.of(context).accentColor),
           ),
         ),
         body: _buildResults(bloc),
@@ -83,9 +81,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
                 Text(
                   'No Results',
-                  style: TextStyle(
-                      fontFamily: Utils.ubuntuRegularFont,
-                      color: Theme.of(context).accentColor),
+                  style: TextStyle(fontFamily: Utils.ubuntuRegularFont, color: Theme.of(context).accentColor),
                 ),
               ],
             ),
@@ -111,16 +107,14 @@ class _LocationScreenState extends State<LocationScreen> {
                 padding: const EdgeInsets.all(24.0),
                 child: _loader(),
               )
-            : _locationCard(Utils.getListInfo(results[index].value),
-                results[index].location);
+            : _locationCard(Utils.getListInfo(results[index].value), results[index].location);
       },
     );
   }
 
   Widget _locationCard(ListInfo listInfo, String location) {
     return Padding(
-      padding:
-          const EdgeInsets.only(top: 4.0, left: 8.0, right: 8.0, bottom: 4.0),
+      padding: const EdgeInsets.only(top: 4.0, left: 8.0, right: 8.0, bottom: 4.0),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
@@ -136,9 +130,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Expanded(
                 flex: 1,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(6.0),
-                      bottomLeft: Radius.circular(6.0)),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(6.0), bottomLeft: Radius.circular(6.0)),
                   child: Container(
                     color: listInfo.color,
                     child: Column(
@@ -152,10 +144,7 @@ class _LocationScreenState extends State<LocationScreen> {
                         ),
                         Text(
                           "${listInfo.message}",
-                          style: TextStyle(
-                              fontFamily: Utils.ubuntuRegularFont,
-                              color: Colors.black38,
-                              fontSize: 12),
+                          style: TextStyle(fontFamily: Utils.ubuntuRegularFont, color: Colors.black38, fontSize: 12),
                         )
                       ],
                     ),
@@ -165,9 +154,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Expanded(
                 flex: 2,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(6.0),
-                      bottomRight: Radius.circular(6.0)),
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(6.0), bottomRight: Radius.circular(6.0)),
                   child: Container(
                     color: Theme.of(context).primaryColor,
                     child: Column(
@@ -178,10 +165,8 @@ class _LocationScreenState extends State<LocationScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 8.0, left: 8.0),
-                              child: Icon(Icons.location_on,
-                                  color: Theme.of(context).accentColor),
+                              padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+                              child: Icon(Icons.location_on, color: Theme.of(context).accentColor),
                             ),
                             Flexible(
                               child: Padding(
@@ -201,14 +186,11 @@ class _LocationScreenState extends State<LocationScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 4.0, left: 12.0),
+                              padding: const EdgeInsets.only(right: 4.0, left: 12.0),
                               child: Text(
                                 "AQI: ",
                                 style: TextStyle(
-                                    fontFamily: Utils.ubuntuRegularFont,
-                                    color: Theme.of(context).accentColor,
-                                    fontSize: 18.0),
+                                    fontFamily: Utils.ubuntuRegularFont, color: Theme.of(context).accentColor, fontSize: 18.0),
                               ),
                             ),
                             Text(
@@ -240,7 +222,8 @@ class _LocationScreenState extends State<LocationScreen> {
         width: 30,
         height: 30,
         child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)),
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+        ),
       ),
     );
   }
