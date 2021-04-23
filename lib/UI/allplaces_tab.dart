@@ -3,6 +3,7 @@ import 'package:aqi_monitor/BLoC/myplaces_bloc.dart';
 import 'package:aqi_monitor/UI/location_screen.dart';
 import 'package:aqi_monitor/Utils/utils.dart';
 import 'package:aqi_monitor/database/place.dart';
+import 'package:aqi_monitor/model/city_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive/hive.dart';
@@ -87,12 +88,14 @@ class _AllPlacesTabState extends State<AllPlacesTab> {
               "${cities[index]}",
               style: TextStyle(color: Theme.of(context).accentColor, fontFamily: Utils.ubuntuRegularFont),
             ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => LocationScreen(cities[index]),
-              ),
-            ),
+            onTap: () {
+              CityModel cityModel = CityModel();
+              cityModel.city = cities[index];
+              Navigator.pushNamed(
+                context,
+                LocationScreen.routeName + '?${cityModel.toQueryParam()}',
+              );
+            },
           ),
         );
       },
