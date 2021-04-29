@@ -4,7 +4,7 @@ import 'package:aqi_monitor/model/city_model.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
-mixin FluroRoutesHandlers {
+mixin FluroRouteHandlers {
   /// Handler for MyHomePage
   var homeScreenHandler = Handler(
     handlerFunc: (

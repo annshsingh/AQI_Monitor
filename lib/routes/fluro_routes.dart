@@ -5,11 +5,11 @@ import 'package:aqi_monitor/UI/location_screen.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/foundation.dart';
 
-import 'fluro_routes_handlers.dart';
+import 'fluro_route_handlers.dart';
 
 /// setting up singleton class for FluroRoutes
 
-class FluroRoutes with FluroRoutesHandlers {
+class FluroRoutes with FluroRouteHandlers {
   /// initializing FluroRoutes
   static final FluroRoutes fluroRoutesInstance = FluroRoutes._();
 
