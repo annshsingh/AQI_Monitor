@@ -27,6 +27,7 @@ dependencies:
   flutter_svg: 0.21.0+1
   hive: 2.0.3
   hive_flutter: 1.0.0
+  fluro: 2.0.3
 
 
 dev_dependencies:

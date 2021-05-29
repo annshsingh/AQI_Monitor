@@ -8,9 +8,7 @@ import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  static final String routeName = '/home_screen';
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -24,7 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //Wrap everything in DefaultTabController
+    // Wrap everything in DefaultTabController
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -43,17 +41,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Text(
-                widget.title,
+                'AQI Monitor',
                 style: TextStyle(
-                    fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont, color: Colors.blue),
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont,
+                  color: Colors.blue,
+                ),
               ),
             ],
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Provider.of<Settings>(context).isDarkMode ? Icons.brightness_7 : Icons.brightness_3),
+              icon: Icon(
+                Provider.of<Settings>(context).isDarkMode ? Icons.brightness_7 : Icons.brightness_3,
+              ),
               onPressed: () {
-                changeTheme(Provider.of<Settings>(context, listen: false).isDarkMode ? false : true, context);
+                changeTheme(
+                  Provider.of<Settings>(context, listen: false).isDarkMode ? false : true,
+                  context,
+                );
               },
             ),
           ],

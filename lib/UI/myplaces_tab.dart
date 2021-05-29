@@ -1,6 +1,7 @@
 import 'package:aqi_monitor/UI/location_screen.dart';
 import 'package:aqi_monitor/Utils/utils.dart';
 import 'package:aqi_monitor/database/place.dart';
+import 'package:aqi_monitor/model/city_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -61,12 +62,14 @@ class _MyPlacesTabState extends State<MyPlacesTab> {
                         "${placeBox.getAt(listIndex).name}",
                         style: TextStyle(color: Theme.of(context).accentColor, fontFamily: Utils.ubuntuRegularFont),
                       ),
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => LocationScreen(placeBox.getAt(listIndex).name),
-                        ),
-                      ),
+                      onTap: () {
+                        CityModel cityModel = CityModel();
+                        cityModel.city = placeBox.getAt(listIndex).name;
+                        Navigator.pushNamed(
+                          context,
+                          LocationScreen.routeName + '?${cityModel.toQueryParam()}',
+                        );
+                      },
                     ),
                   );
                 },

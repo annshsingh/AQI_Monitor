@@ -8,9 +8,13 @@ import 'package:flutter_svg/svg.dart';
 import '../DataLayer/location.dart';
 
 class LocationScreen extends StatefulWidget {
+  static final String routeName = '/location_screen';
+
   final String city;
 
-  const LocationScreen(this.city);
+  const LocationScreen({
+    this.city,
+  });
 
   @override
   _LocationScreenState createState() => _LocationScreenState();
